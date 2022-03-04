@@ -1,28 +1,45 @@
 import React, { useState } from 'react';
 import { useMutation, gql } from '@apollo/client';
+import { GET_LINKS } from '../../gqlUtil';
+
+const ADD_LINK = gql`
+  mutation CreateLink($url: String!, $slug: String) {
+    createLink(url: $url, slug: $slug) {
+      url
+      slug
+    }
+  }
+`;
 
 const Form = () => {
-  const [link, setLink] = useState('');
+  const [url, setUrl] = useState('');
+  const [addLink, { data, loading, error }] = useMutation(ADD_LINK, {
+    refetchQueries: [GET_LINKS, 'GetLinks'],
+  });
 
   function submitForm(e) {
     e.preventDefault();
-    console.log(link);
+    addLink({ variables: { url: url } });
+    setUrl('');
   }
 
   function updateInput(e) {
-    setLink(e.target.value);
+    setUrl(e.target.value);
   }
+
+  if (loading) return 'Submitting...';
+  if (error) return `Submission error! ${error.message}`;
 
   return (
     <form onSubmit={submitForm}>
       <input
         type='text'
-        name='link'
-        value={link}
+        name='url'
+        value={url}
         onChange={updateInput}
-        placeholder='Link'
+        placeholder='Url'
       />
-      <input type='submit' />
+      <button type='submit'>Submit</button>
     </form>
   );
 };
