@@ -12,19 +12,29 @@ const ADD_LINK = gql`
 `;
 
 const Form = () => {
-  const [url, setUrl] = useState('');
+  const [state, setState] = useState({
+    url: '',
+    slug: '',
+  });
   const [addLink, { data, loading, error }] = useMutation(ADD_LINK, {
     refetchQueries: [GET_LINKS, 'GetLinks'],
   });
 
   function submitForm(e) {
     e.preventDefault();
-    addLink({ variables: { url: url } });
-    setUrl('');
+    addLink({ variables: { url: state.url, slug: state.slug } });
+    setState({
+      url: '',
+      slug: '',
+    });
   }
 
   function updateInput(e) {
-    setUrl(e.target.value);
+    const value = e.target.value;
+    setState({
+      ...state,
+      [e.target.name]: value,
+    });
   }
 
   if (loading) return 'Submitting...';
@@ -35,9 +45,16 @@ const Form = () => {
       <input
         type='text'
         name='url'
-        value={url}
+        value={state.url}
         onChange={updateInput}
         placeholder='Url'
+      />
+      <input
+        type='text'
+        name='slug'
+        value={state.slug}
+        onChange={updateInput}
+        placeholder='Slug'
       />
       <button type='submit'>Submit</button>
     </form>
