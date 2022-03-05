@@ -8,12 +8,14 @@ const LinkList = () => {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error!!</p>;
 
+  let urlPre = 'http://localhost:3000/';
+
   return data.links
     .slice(0)
     .reverse()
     .map(({ url, slug }) => (
       <div key={slug}>
-        <p>
+        <p onClick={() => navigator.clipboard.writeText(urlPre + slug)}>
           {url} : {slug}
         </p>
       </div>

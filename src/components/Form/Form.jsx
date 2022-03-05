@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useMutation, gql } from '@apollo/client';
 import { GET_LINKS } from '../../gqlUtil';
+import { Button, Input } from '@mui/material';
 
 const ADD_LINK = gql`
   mutation CreateLink($url: String!, $slug: String) {
@@ -42,21 +43,22 @@ const Form = () => {
 
   return (
     <form onSubmit={submitForm}>
-      <input
+      <Input
         type='text'
         name='url'
         value={state.url}
         onChange={updateInput}
-        placeholder='Url'
+        placeholder='Paste link here'
+        sx={{ my: 4, mx: 2 }}
       />
-      <input
+      <Input
         type='text'
         name='slug'
         value={state.slug}
         onChange={updateInput}
-        placeholder='Slug'
+        placeholder='Unique slug?'
       />
-      <button type='submit'>Submit</button>
+      <Button type='submit'>Submit</Button>
     </form>
   );
 };

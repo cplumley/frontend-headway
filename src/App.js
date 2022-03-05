@@ -9,7 +9,7 @@ function App() {
   return (
     <div className='App'>
       <NavBar />
-      <Container maxWidth='md'>
+      <Container maxWidth='lg'>
         <HeroImage />
         <Form />
         <LinkList />
