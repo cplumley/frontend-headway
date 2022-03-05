@@ -1,6 +1,7 @@
 import React from 'react';
 import { useQuery, gql } from '@apollo/client';
 import { GET_LINKS } from '../gqlUtil';
+import { Tooltip } from '@mui/material';
 
 const LinkList = () => {
   const { loading, error, data } = useQuery(GET_LINKS);
@@ -14,11 +15,13 @@ const LinkList = () => {
     .slice(0)
     .reverse()
     .map(({ url, slug }) => (
-      <div key={slug}>
-        <p onClick={() => navigator.clipboard.writeText(urlPre + slug)}>
+      <Tooltip title='Copy Link' key={slug}>
+        <p
+          onClick={() => navigator.clipboard.writeText(urlPre + slug)}
+          style={{ cursor: 'pointer' }}>
           {url} : {slug}
         </p>
-      </div>
+      </Tooltip>
     ));
 };
 
