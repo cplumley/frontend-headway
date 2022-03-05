@@ -1,3 +1,4 @@
+import { Container } from '@mui/material';
 import './App.css';
 import Form from './components/Form/Form';
 import HeroImage from './components/HeroImage/HeroImage';
@@ -8,9 +9,11 @@ function App() {
   return (
     <div className='App'>
       <NavBar />
-      <HeroImage />
-      <Form />
-      <LinkList />
+      <Container maxWidth='md'>
+        <HeroImage />
+        <Form />
+        <LinkList />
+      </Container>
     </div>
   );
 }

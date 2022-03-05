@@ -8,13 +8,16 @@ const LinkList = () => {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error!!</p>;
 
-  return data.links.map(({ url, slug }) => (
-    <div key={slug}>
-      <p>
-        {url} : {slug}
-      </p>
-    </div>
-  ));
+  return data.links
+    .slice(0)
+    .reverse()
+    .map(({ url, slug }) => (
+      <div key={slug}>
+        <p>
+          {url} : {slug}
+        </p>
+      </div>
+    ));
 };
 
 export default LinkList;
