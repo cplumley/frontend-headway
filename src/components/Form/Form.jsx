@@ -49,7 +49,7 @@ const Form = () => {
         value={state.url}
         onChange={updateInput}
         placeholder='Paste link here'
-        sx={{ my: 4, mx: 2, width: 2 / 4 }}
+        sx={{ my: {  xs: 1, md: 4 }, width: {  xs: .8, md: 2 / 4 }}}
       />
       <OutlinedInput
         type='text'
@@ -57,8 +57,9 @@ const Form = () => {
         value={state.slug}
         onChange={updateInput}
         placeholder='Unique slug?'
+        sx={{ my: { xs: 1, md: 4 }, mx: 2, width: { xs: .8, md: 1/4 }}}
       />
-      <Button type='submit' variant='outlined' sx={{ mx: 4 }}>
+      <Button type='submit' variant='outlined' sx={{ my: { xs: 1, md: 4 }, p: 2, width: { xs: .8, md: 1/8 } }}>
         Submit
       </Button>
     </form>

@@ -4,14 +4,14 @@ import hero from '../../assets/person.png';
 
 const HeroImage = () => {
   return (
-    <Grid container spacing={2} direction={{ xs: 'column-reverse', md: 'row' }}>
+    <Grid container spacing={2} direction={{ xs: 'column-reverse', md: 'row' }} sx={{ alignItems: 'center' }}>
       <Grid item xs={12} md={6} sx={{ my: { xs: 3, md: 15 } }}>
         <h2>Welcome to Shurly</h2>
         <p>
           We are so excited that you are here. Copy your link below to get your
           unique shortened url
         </p>
-        <Button variant='contained' sx={{ backgroundColor: 'slateblue' }}>
+        <Button variant='contained' sx={{ backgroundColor: 'slateblue',transition: '0.3s', "&:hover": { backgroundColor: 'slateblue', opacity: '0.8' } }}>
           Sign up for free
         </Button>
       </Grid>
