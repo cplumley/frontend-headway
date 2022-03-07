@@ -19,7 +19,7 @@ const LinkList = () => {
         <p
           onClick={() => navigator.clipboard.writeText(urlPre + slug)}
           style={{ cursor: 'pointer' }}>
-          {url} : {slug}
+          {url} : {urlPre + slug}
         </p>
       </Tooltip>
     ));

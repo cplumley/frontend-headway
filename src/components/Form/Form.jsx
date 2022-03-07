@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useMutation, gql } from '@apollo/client';
 import { GET_LINKS } from '../../gqlUtil';
-import { Button, OutlinedInput } from '@mui/material';
+import { Alert, Button, OutlinedInput } from '@mui/material';
 
 const ADD_LINK = gql`
   mutation CreateLink($url: String!, $slug: String) {
@@ -39,10 +39,14 @@ const Form = () => {
   }
 
   if (loading) return 'Submitting...';
-  if (error) return `Submission error! ${error.message}`;
 
   return (
     <form onSubmit={submitForm}>
+      {
+        error ?
+          <Alert severity="error">Submission error! {error.message}</Alert>
+          : null
+      }
       <OutlinedInput
         type='text'
         name='url'
